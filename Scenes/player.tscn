@@ -367,5 +367,7 @@ shape = SubResource("RectangleShape2D_6ki5q")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_e21wt")
+volume_db = -9.845
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(100, -50)

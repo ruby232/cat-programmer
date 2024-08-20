@@ -1,8 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://rexyw1qgfbpd"]
+[gd_scene load_steps=17 format=4 uid="uid://rexyw1qgfbpd"]
 
+[ext_resource type="Script" path="res://Scenes/level_1.gd" id="1_nq5jl"]
 [ext_resource type="Texture2D" uid="uid://ckpppvejbiq3e" path="res://tiles/Terrain (16x16).png" id="1_pt6vr"]
+[ext_resource type="PackedScene" uid="uid://h22xobw7xce2" path="res://Scenes/dead_zone.tscn" id="2_ra2y6"]
 [ext_resource type="PackedScene" uid="uid://bkaiapi4cr101" path="res://Scenes/player.tscn" id="2_vcr4h"]
 [ext_resource type="AudioStream" uid="uid://bmux56akpjnaj" path="res://sounds/random silly chip song.ogg" id="3_4dju5"]
+[ext_resource type="PackedScene" uid="uid://b70cgqy0sm0x4" path="res://Scenes/apple.tscn" id="5_nfmrr"]
+[ext_resource type="PackedScene" uid="uid://c6nnw804mcsea" path="res://Scenes/hud.tscn" id="6_mqcxg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xglm6"]
 texture = ExtResource("1_pt6vr")
@@ -195,10 +199,17 @@ size = Vector2(48, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkh1w"]
 size = Vector2(15, 223)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vey5"]
+size = Vector2(11, 238)
+
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_nq5jl")
 
 [node name="Player" parent="." instance=ExtResource("2_vcr4h")]
 position = Vector2(33, 180)
+
+[node name="DeadZone" parent="." instance=ExtResource("2_ra2y6")]
+position = Vector2(19, 158)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 metadata/_edit_group_ = true
@@ -231,7 +242,25 @@ shape = SubResource("RectangleShape2D_5cmaa")
 position = Vector2(471.5, 111.5)
 shape = SubResource("RectangleShape2D_tkh1w")
 
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-4.5, 109)
+shape = SubResource("RectangleShape2D_4vey5")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_4dju5")
-volume_db = -11.244
 autoplay = true
+
+[node name="Apple" parent="." instance=ExtResource("5_nfmrr")]
+position = Vector2(446, 169)
+
+[node name="Apple2" parent="." instance=ExtResource("5_nfmrr")]
+position = Vector2(113, 145)
+
+[node name="Apple3" parent="." instance=ExtResource("5_nfmrr")]
+position = Vector2(268, 179)
+
+[node name="Apple4" parent="." instance=ExtResource("5_nfmrr")]
+position = Vector2(372, 142)
+
+[node name="hud" parent="." instance=ExtResource("6_mqcxg")]
+follow_viewport_enabled = false

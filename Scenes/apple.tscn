@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://b70cgqy0sm0x4"]
+
+[ext_resource type="Texture2D" uid="uid://b7hjqcga15ej1" path="res://tiles/Fruits/Apple.png" id="1_ex4ss"]
+[ext_resource type="Script" path="res://scripts/apple.gd" id="1_scid6"]
+[ext_resource type="AudioStream" uid="uid://di2p4xwb1340l" path="res://sounds/confirmation_002.ogg" id="3_e3q3o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b7aqt"]
+
+[sub_resource type="Animation" id="Animation_6gmfq"]
+resource_name = "Apple"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0019203, 0.0352536, 0.068587, 0.10192, 0.135254, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.433333, 0.466667, 0.5, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_b0veh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_trwrp"]
+_data = {
+"Apple": SubResource("Animation_6gmfq"),
+"RESET": SubResource("Animation_b0veh")
+}
+
+[node name="Apple" type="Node2D"]
+
+[node name="Apple2D" type="Area2D" parent="."]
+script = ExtResource("1_scid6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Apple2D"]
+shape = SubResource("CircleShape2D_b7aqt")
+
+[node name="Sprite2D" type="Sprite2D" parent="Apple2D"]
+position = Vector2(0, 2)
+texture = ExtResource("1_ex4ss")
+hframes = 17
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Apple2D"]
+libraries = {
+"": SubResource("AnimationLibrary_trwrp")
+}
+autoplay = "Apple"
+
+[node name="ConfirmSong" type="AudioStreamPlayer2D" parent="Apple2D"]
+stream = ExtResource("3_e3q3o")
+volume_db = 2.251
+
+[connection signal="body_entered" from="Apple2D" to="Apple2D" method="_on_body_entered"]

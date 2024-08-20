@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6nnw804mcsea"]
+
+[ext_resource type="Script" path="res://scripts/score.gd" id="1_7ubpw"]
+[ext_resource type="Texture2D" uid="uid://b7hjqcga15ej1" path="res://tiles/Fruits/Apple.png" id="2_dxwmx"]
+[ext_resource type="Texture2D" uid="uid://ir1jkllycdf8" path="res://tiles/hearts.png" id="3_301hq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oytki"]
+bg_color = Color(0.878431, 0.478431, 0.196078, 0.733333)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="hud" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_7ubpw")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 56.0
+offset_bottom = 26.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oytki")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("2_dxwmx")
+hframes = 17
+
+[node name="count" type="Label" parent="."]
+offset_left = 26.0
+offset_top = 4.0
+offset_right = 66.0
+offset_bottom = 27.0
+
+[node name="Heart1" type="Sprite2D" parent="."]
+position = Vector2(73, 15)
+texture = ExtResource("3_301hq")
+hframes = 4
+
+[node name="Heart2" type="Sprite2D" parent="."]
+position = Vector2(88, 15)
+texture = ExtResource("3_301hq")
+hframes = 4
+
+[node name="Heart3" type="Sprite2D" parent="."]
+position = Vector2(103, 15)
+texture = ExtResource("3_301hq")
+hframes = 4

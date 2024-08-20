@@ -37,16 +37,16 @@ func update_animated():
 			return
 	
 		if position.y > 200:
-			animated_spite.play("dead")		
+			animated_spite.play("dead")
 		
 		animated_spite.play("fall")
 		return
-		
-	
-	
 	
 	if velocity.x:
 		animated_spite.play("run")
 	else:
 		animated_spite.play("idle")
-	
+		
+func check_lives():
+	if Global.lives == 0:
+		pass
