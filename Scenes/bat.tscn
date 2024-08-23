@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://caaseaunyawkc"]
+
+[ext_resource type="Texture2D" uid="uid://byolkv4pgj4sf" path="res://tiles/Bat Black Pink/Bat1.png" id="1_6b7bh"]
+[ext_resource type="Script" path="res://scripts/bat.gd" id="1_s5abd"]
+[ext_resource type="Texture2D" uid="uid://c17hr7bihus0" path="res://tiles/Bat Black Pink/Bat2.png" id="2_wmvvw"]
+[ext_resource type="Texture2D" uid="uid://dddcdi0he3gcb" path="res://tiles/Bat Black Pink/Bat3.png" id="3_4o2v6"]
+[ext_resource type="Texture2D" uid="uid://cwx8wh2dqiyrw" path="res://tiles/Bat Black Pink/Bat4.png" id="4_xituc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_co0k2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6b7bh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wmvvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4o2v6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xituc")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axens"]
+size = Vector2(77, 72)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rwmh1"]
+radius = 38.4187
+
+[node name="Bat" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_s5abd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_co0k2")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.780714
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.5, 1)
+shape = SubResource("RectangleShape2D_axens")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_rwmh1")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
